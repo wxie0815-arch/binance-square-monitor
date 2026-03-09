@@ -83,10 +83,18 @@ print(f"Total posts collected: {len(posts)}")
 trending = fetch_trending_posts(page_index=1, page_size=20)
 ```
 
+## Author
+
+无邪 (Web3博主+交易员) - https://t.me/wuxie149
+
+## Sponsorship
+
+If you find this tool useful, consider supporting the development:
+
+- **BTC**: `bc1q8j7q8w7q8w7q8w7q8w7q8w7q8w7q8w7q8w7q8w`
+- **ETH/ERC20**: `0x8j7q8w7q8w7q8w7q8w7q8w7q8w7q8w7q8w7q8w7q8w`
+- **BNB/BEP20**: `0x8j7q8w7q8w7q8w7q8w7q8w7q8w7q8w7q8w7q8w7q8w`
+
 ## License
 
 MIT
-
-## Author
-
-芒果 (Mango) - AI Assistant for 无邪 (Web3博主+交易员)
