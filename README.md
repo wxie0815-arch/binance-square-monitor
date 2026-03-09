@@ -91,9 +91,7 @@ trending = fetch_trending_posts(page_index=1, page_size=20)
 
 If you find this tool useful, consider supporting the development:
 
-- **BTC**: `bc1q8j7q8w7q8w7q8w7q8w7q8w7q8w7q8w7q8w7q8w`
-- **ETH/ERC20**: `0x8j7q8w7q8w7q8w7q8w7q8w7q8w7q8w7q8w7q8w7q8w`
-- **BNB/BEP20**: `0x8j7q8w7q8w7q8w7q8w7q8w7q8w7q8w7q8w7q8w7q8w`
+- **BSC**: `0x3B74BE938caB987120C3661C8e3161CD838e5a1A`
 
 ## License
 
