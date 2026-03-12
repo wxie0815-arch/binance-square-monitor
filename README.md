@@ -1,98 +1,80 @@
-# Binance Square Monitor
+# 📈 Binance Square Monitor — 币安广场热帖监控 Skill
 
-A powerful skill for monitoring Binance Square trending posts and tracking real-time traffic data including view count, like count, comment count, and share count.
+[![Version](https://img.shields.io/badge/version-2.1.0-blue)](https://github.com/wxie0815-arch/binance-square-monitor)
+[![OpenClaw](https://img.shields.io/badge/OpenClaw-Compatible-green)](https://openclaw.ai)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Features
+> 实时抓取并监控币安广场的热门帖子，追踪浏览量、点赞、评论、分享等流量数据。支持单次快照、连续监控和48小时全量历史数据抓取。
 
-- **48-Hour Full Data Fetch**: Scrape all posts from the past 48 hours using multiple data sources with automatic deduplication
-- **Real-time Monitoring**: Continuous monitoring with change tracking
-- **Comprehensive Reports**: Generate detailed reports and analytics
-- **Multiple Output Formats**: CSV, JSON, and terminal display
-- **Change Tracking**: Monitor traffic changes over time
+## 🎯 功能概述
 
-## Quick Start
+`binance-square-monitor` 是一个独立的监控工具，同时也是 `binance-square-oracle` 的核心数据来源（L0层）。它提供强大的数据抓取能力，为市场分析和内容策略提供数据支持。
 
-### Installation
+## ✨ 核心特性
+
+- **48小时全量数据**：通过多API源融合去重，抓取过去48小时的全部帖子数据。
+- **实时监控**：支持按指定时间间隔连续抓取，并记录流量变化增量。
+- **多格式输出**：支持将数据保存为 CSV、JSON，并生成 Markdown 格式的分析报告。
+- **无需认证**：所有抓取均在未登录状态下通过公开API完成，无需任何凭证。
+- **灵活的命令行接口**：提供 `fetch`, `fetch-48h`, `monitor` 三种命令，满足不同场景需求。
+
+## 🚀 快速开始
+
+### 安装
 
 ```bash
-# Clone the repository
-git clone https://github.com/wxie0815-arch/binance-square-monitor.git
+gh repo clone wxie0815-arch/binance-square-monitor
 cd binance-square-monitor
-
-# Install dependencies (only requests needed)
-pip install requests
 ```
 
-### 48-Hour Full Data Fetch
-
-Scrape all posts from the past 48 hours:
+### 命令行使用
 
 ```bash
+# 抓取过去48小时全量数据并生成报告
 python3 scripts/binance_square_monitor.py fetch-48h --output ./data
-```
 
-### Single Fetch (One-time Snapshot)
-
-```bash
+# 抓取最新的3页热门帖子
 python3 scripts/binance_square_monitor.py fetch --pages 3 --output ./data
+
+# 每5分钟监控一次，持续运行
+python3 scripts/binance_square_monitor.py monitor --interval 300 --output ./data
 ```
 
-### Continuous Monitoring
-
-```bash
-python3 scripts/binance_square_monitor.py monitor --interval 300 --pages 3 --output ./data
-```
-
-## Data Fields Collected
-
-Each post record contains:
-- `post_id`: Unique post identifier
-- `author`: Author display name
-- `view_count`: Total views
-- `like_count`: Total likes
-- `comment_count`: Total comments
-- `share_count`: Total shares
-- `reply_count`: Total replies
-- `quote_count`: Total quotes
-- `post_time`: Post creation time (UTC)
-- `hashtags`: Associated hashtags
-- `web_link`: Direct URL to post
-
-## Output Files
-
-- `48h_full_data.csv`: Full dataset from 48-hour fetch
-- `48h_full_data.json`: Structured JSON with stats
-- `48h_report.md`: Comprehensive summary report
-- `trending_posts.csv`: All snapshots with full traffic data
-- `trending_posts.json`: Structured JSON with snapshot grouping
-- `changes_log.csv`: Delta values between consecutive snapshots
-- `monitor_report.md`: Summary report (generated on exit for monitor)
-
-## Programmatic Usage
+### 作为模块使用
 
 ```python
 import sys
-sys.path.insert(0, "/path/to/binance-square-monitor/scripts")
+sys.path.insert(0, "scripts")
 from binance_square_monitor import fetch_48h_full, fetch_trending_posts
 
-# Fetch full 48-hour data
-posts, stats = fetch_48h_full(hours=48, page_size=20, verbose=True)
-print(f"Total posts collected: {len(posts)}")
+# 获取48小时全量数据
+posts, stats = fetch_48h_full()
 
-# Fetch single page of trending posts
-trending = fetch_trending_posts(page_index=1, page_size=20)
+# 获取最新一页热门帖子
+trending = fetch_trending_posts(page_index=1)
 ```
 
-## Author
+详细的命令行参数和输出文件说明，请参考 `SKILL.md`。
 
-无邪 (Web3博主+交易员) - https://t.me/wuxie149
+## 🔗 相关 Skill
 
-## Sponsorship
+| Skill | 说明 | 仓库 |
+|-------|------|------|
+| `binance-square-oracle` | 集成此监控功能的完整预言机 | [wxie0815-arch/binance-square-oracle](https://github.com/wxie0815-arch/binance-square-oracle) |
 
-If you find this tool useful, consider supporting the development:
+## 📄 许可证
 
-- **BSC**: `0x3B74BE938caB987120C3661C8e3161CD838e5a1A`
+MIT License
 
-## License
+---
 
-MIT
+## 💰 赞助支持
+
+如果这个项目对您有帮助，欢迎赞助支持！
+
+**BSC（BEP-20）钱包地址：**
+`0x3B74BE938caB987120C3661C8e3161CD838e5a1A` 
+
+支持 USDT / BNB / 任意 BEP-20 代币。感谢每一位支持者 🙏
+
+**作者：** 无邪Infinity | 币安广场 [@wuxie](https://www.binance.com/en/square/profile/wuxie) | X [@wuxie149](https://x.com/wuxie149)

@@ -7,26 +7,35 @@ description: "Monitor Binance Square trending posts and track real-time traffic 
 
 Scrape and monitor posts from Binance Square, tracking view count, like count, comment count, and share count in real time. Supports single fetching, continuous monitoring, and 48-hour full historical data extraction.
 
+## Installation
+
+```bash
+gh repo clone wxie0815-arch/binance-square-monitor
+cd binance-square-monitor
+```
+
 ## Quick Start
 
-### 48-Hour Full Data Fetch (New Feature)
+The main script is at `scripts/binance_square_monitor.py` relative to the skill root directory.
+
+### 48-Hour Full Data Fetch
 
 Scrape all posts from the past 48 hours using multiple data sources with automatic deduplication.
 
 ```bash
-python3 /home/ubuntu/skills/binance-square-monitor/scripts/binance_square_monitor.py fetch-48h --output ./binance_square_data
+python3 scripts/binance_square_monitor.py fetch-48h --output ./binance_square_data
 ```
 
 ### Single Fetch (One-time Snapshot)
 
 ```bash
-python3 /home/ubuntu/skills/binance-square-monitor/scripts/binance_square_monitor.py fetch --pages 3 --output ./binance_square_data
+python3 scripts/binance_square_monitor.py fetch --pages 3 --output ./binance_square_data
 ```
 
 ### Continuous Monitoring
 
 ```bash
-python3 /home/ubuntu/skills/binance-square-monitor/scripts/binance_square_monitor.py monitor --interval 300 --pages 3 --output ./binance_square_data
+python3 scripts/binance_square_monitor.py monitor --interval 300 --pages 3 --output ./binance_square_data
 ```
 
 ## Workflow
@@ -108,7 +117,7 @@ Import functions directly for custom workflows:
 
 ```python
 import sys
-sys.path.insert(0, "/home/ubuntu/skills/binance-square-monitor/scripts")
+sys.path.insert(0, "scripts")  # relative to skill root directory
 from binance_square_monitor import fetch_48h_full, fetch_trending_posts
 
 # Fetch full 48-hour data
